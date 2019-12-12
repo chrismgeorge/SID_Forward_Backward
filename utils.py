@@ -40,8 +40,8 @@ def pack_raw(raw):
                        im[1:H:2,0:W:2,:]), axis=2)
     return out
 
-def reduce_mean(out_im, gt_im):
-    return torch.abs(out_im - gt_im).mean()
+def reduce_mean(out_im, gt_im, gt_edge, out_edge):
+    return torch.abs(out_im - gt_im).mean() + torch.abs(out_edge - gt_edge).mean()
 
 def save_current_model(model, epoch, out_img, gt_img, train_id, ratio):
     # Make directory if empty
